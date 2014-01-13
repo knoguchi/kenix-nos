@@ -1,3 +1,12 @@
+<div class="collapse navbar-collapse" ng-controller="HeaderController">
+    <ul class="nav navbar-nav">
+        <li ng-class="{ active: isActive('/')}"><a href="/">Home</a></li>
+        <li ng-class="{ active: isActive('/dogs')}"><a href="/dogs">Dogs</a></li>
+        <li ng-class="{ active: isActive('/cats')}"><a href="/cats">Cats</a></li>
+    </ul>
+</div>
+<div ng-view></div>
+
 <div class="header">
     <ul class="nav nav-pills pull-right">
         <li class="active"><a ng-href="#">Home</a></li>
