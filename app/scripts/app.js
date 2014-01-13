@@ -4,7 +4,9 @@ angular.module('nosApp', [
         'ngCookies',
         'ngResource',
         'ngSanitize',
-        'ngRoute'
+        'ngRoute',
+        'ngGrid',
+        'pos',
     ])
     .config(function ($routeProvider) {
         $routeProvider
