@@ -1,5 +1,6 @@
 <!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>
 <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>
@@ -22,7 +23,7 @@
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.7/ng-grid.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.7/ng-grid.css"/>
 </head>
 <body ng-app="nosApp">
 <!--[if lt IE 7]>
@@ -65,6 +66,7 @@
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.7/ng-grid.js"></script>
@@ -72,7 +74,13 @@
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/pos/pos.js"></script>
-<script src="scripts/controllers/main.js"></script>
+<script src="scripts/home/main.js"></script>
 <!-- endbuild -->
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
+<script type="text/javascript">
+    function init() {
+        window.init();
+    }
+</script>
 </body>
 </html>
