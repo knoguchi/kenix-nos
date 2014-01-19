@@ -1,6 +1,7 @@
 'use strict';
+var gapi;
 angular.module('nosApp')
-    .controller('MainCtrl', ['$scope', '$window', function ($scope, $window) {
+    .controller('HomeCtrl', ['$scope', '$window', function ($scope, $window) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -13,7 +14,7 @@ angular.module('nosApp')
             gapi.client.load('po', 'v1', function () {
                 $scope.isBackendReady = true;
                 $scope.list();
-            }, 'http://127.0.0.1:1919/_ah/api');
+            }, 'http://localhost:8080/_ah/api');
         };
     }]);
 /*

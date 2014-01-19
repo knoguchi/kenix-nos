@@ -31,8 +31,9 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!-- Add your site or application content here -->
-<div class="container" ng-view=""></div>
+<div ng-include="'header.tpl.html'"></div>
+<div ng-include="'notifications.tpl.html'" class="container-fluid" ng-show="notifications.getCurrent().length"></div>
+<div ng-view class="container-fluid"></div>
 
 <!-- Google Analytics -->
 <script>
@@ -70,10 +71,27 @@
 <!-- endbower -->
 <!-- endbuild -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.7/ng-grid.js"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap.min.js" type="text/javascript"></script>
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/common/security/index.js"></script>
+<script src="scripts/common/security/security.js"></script>
+<script src="scripts/common/security/retryQueue.js"></script>
+
+<script src="scripts/common/security/login/login.js"></script>
+<script src="scripts/common/security/login/LoginFormController.js"></script>
+<script src="scripts/common/security/login/toolbar.js"></script>
+
+<script src="scripts/common/security/interceptor.js"></script>
+<script src="scripts/common/security/authorization.js"></script>
+
+
+<script src="scripts/common/services/httpRequestTracker.js"></script>
+<script src="scripts/common/services/localizedMessages.js"></script>
+<script src="scripts/common/services/notifications.js"></script>
+<script src="scripts/common/services/breadcrumbs.js"></script>
+<script src="scripts/common/services/i18nNotifications.js"></script>
 <script src="scripts/app.js"></script>
-<script src="scripts/pos/pos.js"></script>
 <script src="scripts/home/main.js"></script>
 <!-- endbuild -->
 <script src="https://apis.google.com/js/client.js?onload=init"></script>

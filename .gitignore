@@ -4,3 +4,5 @@ static
 .sass-cache
 app/bower_components
 .DS_Store
+*.pyc
+*~
