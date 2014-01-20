@@ -1,8 +1,8 @@
 node_modules
-static
+vendor
+build
 .tmp
 .sass-cache
-app/bower_components
 .DS_Store
 *.pyc
 *~
