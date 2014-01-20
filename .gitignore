@@ -1,6 +1,7 @@
 node_modules
 vendor
 build
+static
 .tmp
 .sass-cache
 .DS_Store

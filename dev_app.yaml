@@ -10,14 +10,14 @@ handlers:
 
 - url: /favicon.ico
   static_files: build/favicon.ico
-  upload: static/favicon.ico
+  upload: build/favicon.ico
 
 - url: /
-  static_files: static/index.html
-  upload: static/index.html
+  static_files: build/index.html
+  upload: build/index.html
 
 - url: /
-  static_dir: static
+  static_dir: build
 
 libraries:
 - name: django
