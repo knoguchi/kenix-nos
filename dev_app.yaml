@@ -1,0 +1,35 @@
+application: kenix-nos
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /_ah/spi/.*
+  script: main.application
+
+- url: /favicon.ico
+  static_files: build/favicon.ico
+  upload: build/favicon.ico
+
+- url: /
+  static_files: build/index.html
+  upload: build/index.html
+
+- url: /
+  static_dir: build
+
+libraries:
+- name: django
+  version: "1.5"
+- name: endpoints
+  version: 1.0
+
+skip_files:
+
+- ^(.*/)?app\.yaml
+- ^(.*/)?index\.yaml
+- ^(.*/)?node_modules/.*
+- ^(.*/)?app/.*
+- ^(.*/)?test/.*
+- ^(.*/)?build/.*
