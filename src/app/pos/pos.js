@@ -1,13 +1,13 @@
 
 /*
-angular.module('nosApp.controllers', [])
+angular.module('nos.controllers', [])
     .controller('urchaseOrderViewCtrl',
         ['$scope', 'purchaseOrderService',
             function ($scope, purchaseOrderService) {
                 purchaseOrderService.loadData($scope);
             }]);
 
-angular.module('nosApp.services', [])
+angular.module('nos.services', [])
     .service('purchaseOrderService', [function () {
         this.loadData = function ($scope) {
             // Async call to google service

@@ -13,7 +13,7 @@
  * specified, as shown below.
  */
 angular.module( 'nos.home', [
-  'ui.state',
+  'ui.router',
   'plusOne'
 ])
 

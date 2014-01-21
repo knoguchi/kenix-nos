@@ -1,6 +1,6 @@
 angular.module( 'nos.about', [
-  'ui.state',
-  'placeholders',
+  'ui.router',
+  //'placeholders',
   'ui.bootstrap'
 ])
 
