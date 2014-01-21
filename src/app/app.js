@@ -1,6 +1,6 @@
 angular.module('nos', [
-        'templates-app',
-        'templates-common',
+        'templates-app',  // generated js from atpl by html2js
+        'templates-common',  // generated js from acpl by html2js
         'common.errorHandling',
         //'nos.home',
         'nos.about',

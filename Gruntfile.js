@@ -330,6 +330,8 @@ module.exports = function (grunt) {
                 },
                 src: [ '<%= app_files.atpl %>' ],
                 dest: '<%= build_dir %>/templates-app.js'
+                // TODO: if we want to make it a module...
+                // module: 'templates.app'
             },
 
             /**
@@ -341,6 +343,8 @@ module.exports = function (grunt) {
                 },
                 src: [ '<%= app_files.ctpl %>' ],
                 dest: '<%= build_dir %>/templates-common.js'
+                // TODO: if we want to make it a module...
+                // module: 'templates.common'
             }
         },
 
