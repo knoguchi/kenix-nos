@@ -1,12 +1,13 @@
 angular.module('nos', [
-        'templates-app',  // generated js from atpl by html2js
-        'templates-common',  // generated js from acpl by html2js
-        'common.errorHandling',
+        'securty'
+        //'templates-app',  // generated js from atpl by html2js
+        //'templates-common',  // generated js from acpl by html2js
+        //'common.errorHandling',
         //'nos.home',
-        'nos.about',
+        //'nos.about',
         //'nos.club',
         //'nos.team',
-        'ui.router'
+        //'ui.router'
     ])
     .config(function myAppConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
