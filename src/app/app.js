@@ -1,8 +1,11 @@
 var gapi;
 angular.module('nos', [
+        'services.breadcrumbs',
+        'services.i18nNotifications',
+        'services.httpRequestTracker',
         'security',
-        //'templates-app',  // generated js from atpl by html2js
-        //'templates-common',  // generated js from acpl by html2js
+        'templates-app',  // generated js from atpl by html2js
+        'templates-common',  // generated js from acpl by html2js
         //'common.errorHandling',
         //'nos.home',
         //'nos.about',
@@ -19,8 +22,8 @@ angular.module('nos', [
         // (in case they are still logged in from a previous session)
         security.requestCurrentUser();
     }])
-    .controller('HeaderCtrl', ['$scope', '$location', '$route', 'security', 'breadcrumbs', 'notifications', 'httpRequestTracker',
-        function ($scope, $location, $route, security, breadcrumbs, notifications, httpRequestTracker) {
+    .controller('HeaderCtrl', ['$scope', '$location', 'security', 'breadcrumbs', 'notifications', 'httpRequestTracker',
+        function ($scope, $location, security, breadcrumbs, notifications, httpRequestTracker) {
             $scope.location = $location;
             $scope.breadcrumbs = breadcrumbs;
 

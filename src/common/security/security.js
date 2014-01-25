@@ -1,11 +1,12 @@
 // Based loosely around work by Witold Szczerba - https://github.com/witoldsz/angular-http-auth
 angular.module('security.service', [
+        'kenix',
         'security.retryQueue',    // Keeps track of failed requests that need to be retried once the user logs in
         'security.login',         // Contains the login form template and controller
         'ui.bootstrap'     // Used to display the login form as a modal dialog.
     ])
 
-    .factory('security', ['$http', '$q', '$location', 'securityRetryQueue', '$modal', function ($http, $q, $location, queue, $modal) {
+    .factory('security', ['kenix', '$q', '$location', 'securityRetryQueue', '$modal', function (kenix, $q, $location, queue, $modal) {
 
         // Redirect to the given url (defaults to '/')
         function redirect(url) {
@@ -62,14 +63,14 @@ angular.module('security.service', [
 
             // Attempt to authenticate a user by the given email and password
             login: function (email, password) {
-                var request = $http.post('/login', {email: email, password: password});
-                return request.then(function (response) {
-                    service.currentUser = response.data.user;
+                var currentUser = kenix.login({email: email, password: password});
+                if (currentUser) {
+                    service.currentUser = currentUser;
                     if (service.isAuthenticated()) {
                         closeLoginDialog(true);
                     }
                     return service.isAuthenticated();
-                });
+                }
             },
 
             // Give up trying to login and clear the retry queue
@@ -80,10 +81,11 @@ angular.module('security.service', [
 
             // Logout the current user and redirect
             logout: function (redirectTo) {
-                $http.post('/logout').then(function () {
+                var status = kenix.logout();
+                if (status) {
                     service.currentUser = null;
                     redirect(redirectTo);
-                });
+                }
             },
 
             // Ask the backend to see if a user is already authenticated - this may be from a previous session.
@@ -91,11 +93,11 @@ angular.module('security.service', [
                 if (service.isAuthenticated()) {
                     return $q.when(service.currentUser);
                 } else {
-                    // TODO: rewrite users with gapi for Google Cloud Endpoint
-                    return $http.get('/users/index').then(function (response) {
-                        service.currentUser = response.data.user;
+                    var currentUser = kenix.checkAuth();
+                    if (currentUser) {
+                        service.currentUser = currentUser;
                         return service.currentUser;
-                    });
+                    }
                 }
             },
 
