@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21f33848-8ff4-4881-8977-04a3e312a015" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.js" afterPath="$PROJECT_DIR$/src/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/kenix/kenix.js" afterPath="$PROJECT_DIR$/src/common/kenix/kenix.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/security/security.js" afterPath="$PROJECT_DIR$/src/common/security/security.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kenix/users/services.py" afterPath="$PROJECT_DIR$/kenix/users/services.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kenix-nos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +40,10 @@
       <file leaf-file-name="security.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/security/security.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="55" selection-start="3579" selection-end="3579" vertical-scroll-proportion="0.0" vertical-offset="1193" max-vertical-offset="1677">
-              <folding />
+            <state line="95" column="55" selection-start="3455" selection-end="3455" vertical-scroll-proportion="0.0" vertical-offset="1141" max-vertical-offset="1625">
+              <folding>
+                <marker date="1390756691000" expanded="true" signature="3289:3396" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,7 +62,7 @@
       <file leaf-file-name="services.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kenix/users/services.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="8" selection-start="621" selection-end="621" vertical-scroll-proportion="0.5605536" vertical-offset="288" max-vertical-offset="630">
+            <state line="34" column="0" selection-start="726" selection-end="726" vertical-scroll-proportion="0.6885813" vertical-offset="311" max-vertical-offset="600">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -595,7 +590,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49198717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49198717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -687,8 +682,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/security/security.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="55" selection-start="3579" selection-end="3579" vertical-scroll-proportion="0.0" vertical-offset="1193" max-vertical-offset="1677">
-          <folding />
+        <state line="95" column="55" selection-start="3455" selection-end="3455" vertical-scroll-proportion="0.0" vertical-offset="1141" max-vertical-offset="1625">
+          <folding>
+            <marker date="1390756691000" expanded="true" signature="3289:3396" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -735,7 +732,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kenix/users/services.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="8" selection-start="621" selection-end="621" vertical-scroll-proportion="0.5605536" vertical-offset="288" max-vertical-offset="630">
+        <state line="34" column="0" selection-start="726" selection-end="726" vertical-scroll-proportion="0.6885813" vertical-offset="311" max-vertical-offset="600">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>

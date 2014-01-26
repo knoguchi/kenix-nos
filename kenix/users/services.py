@@ -28,10 +28,7 @@ class UserApi(remote.Service):
         """
         Authenticate user by user id and password, or cookie.
         """
-        
+
         current_user = endpoints.get_current_user()
         log.error(current_user)
         return current_user
-
-    @UserModel.method(path='users', http_method='POST',
-                      name='login')
