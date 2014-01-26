@@ -22,6 +22,23 @@ angular.module('nos', [
         // (in case they are still logged in from a previous session)
         security.requestCurrentUser();
     }])
+    .controller('AppCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
+
+        $scope.is_backend_ready = false;
+
+        $window.init = function () {
+            $scope.$apply($scope.loadKenixLib);
+        };
+        $scope.loadKenixLib = function () {
+
+            //$scope.kenix = new Kenix();
+        };
+        $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            if (angular.isDefined(toState.data.pageTitle)) {
+                $scope.pageTitle = toState.data.pageTitle + ' | Kenix NOS';
+            }
+        });
+    }])
     .controller('HeaderCtrl', ['$scope', '$location', 'security', 'breadcrumbs', 'notifications', 'httpRequestTracker',
         function ($scope, $location, security, breadcrumbs, notifications, httpRequestTracker) {
             $scope.location = $location;
@@ -44,20 +61,4 @@ angular.module('nos', [
             $scope.hasPendingRequests = function () {
                 return httpRequestTracker.hasPendingRequests();
             };
-        }])
-    .controller('AppCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-        $window.init = function () {
-            $scope.$apply($scope.loadKenixLib);
-        };
-        $scope.loadKenixLib = function () {
-            gapi.client.load('users', 'v1', function () {
-                $scope.isBackendReady = true;
-                $scope.list();
-            }, 'http://localhost:8080/_ah/api');
-        };
-        $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            if (angular.isDefined(toState.data.pageTitle)) {
-                $scope.pageTitle = toState.data.pageTitle + ' | Kenix NOS';
-            }
-        });
-    }]);
+        }]);

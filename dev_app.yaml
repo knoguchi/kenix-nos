@@ -12,6 +12,9 @@ handlers:
   static_files: build/favicon.ico
   upload: build/favicon.ico
 
+- url: /images
+  static_dir: build/assets/images
+
 - url: /
   static_files: build/index.html
   upload: build/index.html
