@@ -17,7 +17,7 @@ angular.module('kenix', [])
                         return response.data.logout_status;
                     });
             },
-            currentUser: function () {
+            auth: function () {
                 return gapi.client.users.auth()
                     .execute(function (response) {
                         return response.result.user;

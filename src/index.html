@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="nos">
+<html>
 <head>
     <meta charset="utf-8">
     <title ng-bind="pageTitle"></title>
@@ -22,10 +22,17 @@
     <script type="text/javascript">
         console.log("setup");
         function startApp() {
-            var ROOT = '/_ah/api';
-            gapi.client.load('users', 'v1', function () {
-                angular.bootstrap(document, ["nos"]);
-            }, ROOT);
+            var apisToLoad = 2; // must match number of calls to gapi.client.load()
+            var gCallback = function () {
+                if (--apisToLoad == 0) {
+                    //Manual bootstraping of the application
+                    var $injector = angular.bootstrap(document, ['nos']);
+                    console.log('Angular bootstrap complete ');
+                }
+                ;
+            };
+            gapi.client.load('users', 'v1', gCallback, '//' + window.location.host + '/_ah/api');
+            gapi.client.load('po', 'v1', gCallback, '//' + window.location.host + '/_ah/api');
         }
     </script>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -34,7 +41,7 @@
     <![endif]-->
 
 </head>
-<body ng-controller="AppCtrl" ng-show="isBackendReady">
+<body ng-controller="AppCtrl">
 <div ng-include="'header.tpl.html'"></div>
 <div ng-include="'notifications.tpl.html'" class="container-fluid" ng-show="notifications.getCurrent().length"></div>
 <header>
@@ -90,7 +97,7 @@
                 <div class="box">
                     <h3>Easy</h3>
 
-                    <p>No integration, no installation needed. You can start your logistics right away. </p>
+                    <p>No integration, no installation. You can start your logistics right away. </p>
                 </div>
             </li>
             <li class="col-sm-3 col-4 text-center">

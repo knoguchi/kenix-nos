@@ -1,4 +1,3 @@
-var gapi;
 angular.module('nos', [
         'services.breadcrumbs',
         'services.i18nNotifications',
@@ -14,25 +13,17 @@ angular.module('nos', [
         'ui.router'
     ])
     .config(function myAppConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home');
+        console.log('config');
+        //$urlRouterProvider.otherwise('/home');
     })
-
     .run(['security', function (security) {
+        console.log('run security');
         // Get the current user when the application starts
         // (in case they are still logged in from a previous session)
-        security.requestCurrentUser();
+        //security.requestCurrentUser();
     }])
-    .controller('AppCtrl', ['$scope', '$location', '$window', function ($scope, $location, $window) {
-
-        $scope.is_backend_ready = false;
-
-        $window.init = function () {
-            $scope.$apply($scope.loadKenixLib);
-        };
-        $scope.loadKenixLib = function () {
-
-            //$scope.kenix = new Kenix();
-        };
+    .controller('AppCtrl', ['$scope', '$location', 'security', function ($scope, $location, security) {
+        security.requestCurrentUser();
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             if (angular.isDefined(toState.data.pageTitle)) {
                 $scope.pageTitle = toState.data.pageTitle + ' | Kenix NOS';
