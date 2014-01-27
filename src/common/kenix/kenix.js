@@ -3,8 +3,24 @@
 // http://stackoverflow.com/questions/18537687/what-is-the-difference-between-init-and-window-init
 // http://stackoverflow.com/questions/15666048/angular-js-service-vs-provider-vs-factory
 angular.module('kenix', [])
-    .factory('kenix', ['$rootScope', function ($rootScope) {
+    .factory('kenix', ['$rootScope', '$q', function ($rootScope, $q) {
         var service = {
+            asyncLogin: function (email, password) {
+                var deferred = $q.defer();
+                setTimeout(function () {
+                    deferred.notify('About to authenticate ' + email + '.');
+                    gapi.client.users.auth({email: email, password: password})
+                        .execute(
+                        function (response) {
+                            deferred.resolve(response);
+                        },
+                        function (response) {
+                            deferred.reject(response);
+                        }
+                    );
+                }, 1000);
+                return deferred.promise;
+            },
             login: function (email, password) {
                 return gapi.client.users.auth(email, password)
                     .execute(function (response) {
@@ -20,13 +36,18 @@ angular.module('kenix', [])
             auth: function () {
                 return gapi.client.users.auth()
                     .execute(function (response) {
-                        return response.result.user;
+                        if (response && response.code == 200) {
+                            return response.result.user;
+                        }
+                        return null;
                     });
             }
         };
         return service;
 
-    }]);
+    }
+    ])
+;
 
 
 //this.login = function () {

@@ -21,8 +21,11 @@ angular.module('security.service', [
             if (loginDialog) {
                 throw new Error('Trying to open a dialog that is already open!');
             }
-            loginDialog = $modal.dialog();
-            loginDialog.open('security/login/form.tpl.html', 'LoginFormController').then(onLoginDialogClose);
+            loginDialog = $modal.open({
+                templateUrl: 'security/login/form.tpl.html',
+                controller: 'LoginFormController'
+            });
+            loginDialog.result.then(onLoginDialogClose);
         }
 
         function closeLoginDialog(success) {
@@ -63,16 +66,19 @@ angular.module('security.service', [
 
             // Attempt to authenticate a user by the given email and password
             login: function (email, password) {
-                var currentUser = kenix.login({email: email, password: password});
-                if (currentUser) {
-                    service.currentUser = currentUser;
+                // this function should return a Promise.
+                // Do not block!!
+                // a promise takes a callback function with .then(func)
+                console.log("login with %s, %s", email, password);
+                var login_promise = kenix.asyncLogin(email, password);
+                return login_promise.then(function (response) {
+                    service.currentUser = response.user;
                     if (service.isAuthenticated()) {
                         closeLoginDialog(true);
                     }
                     return service.isAuthenticated();
-                }
+                });
             },
-
             // Give up trying to login and clear the retry queue
             cancelLogin: function () {
                 closeLoginDialog(false);
@@ -93,7 +99,7 @@ angular.module('security.service', [
                 if (service.isAuthenticated()) {
                     return $q.when(service.currentUser);
                 } else {
-                    var currentUser = kenix.checkAuth();
+                    var currentUser = kenix.auth();
                     if (currentUser) {
                         service.currentUser = currentUser;
                         return service.currentUser;
@@ -106,10 +112,11 @@ angular.module('security.service', [
 
             // Is the current user authenticated?
             isAuthenticated: function () {
+                console.log("isAuthenticated %s", service.currentUser);
                 return !!service.currentUser;
             },
 
-            // Is the current user an adminstrator?
+            // Is the current user an administrator?
             isAdmin: function () {
                 return !!(service.currentUser && service.currentUser.admin);
             }
