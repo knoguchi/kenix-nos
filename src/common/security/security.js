@@ -87,11 +87,17 @@ angular.module('security.service', [
 
             // Logout the current user and redirect
             logout: function (redirectTo) {
-                var status = kenix.logout();
-                if (status) {
-                    service.currentUser = null;
-                    redirect(redirectTo);
-                }
+                redirectTo = '/';
+                console.log("logout and redirect to %s", redirectTo);
+                var logout_promise = kenix.asyncLogout();
+                return logout_promise.then(function (response) {
+                    if (response.logout_status) {
+                        service.currentUser = null;
+                        console.log("redirecting %s", redirectTo);
+                        redirect(redirectTo);
+                    }
+                });
+
             },
 
             // Ask the backend to see if a user is already authenticated - this may be from a previous session.

@@ -21,6 +21,7 @@ class AuthToken(messages.Message):
     """
     auth_token = messages.StringField(1)
     user = messages.StringField(2)
+    logout_status = messages.BooleanField(3)
 
 @endpoints.api(name='users', version='v1')
 class UserApi(remote.Service):
@@ -59,7 +60,7 @@ class UserApi(remote.Service):
     # auth_level=None
 
     @endpoints.method(AuthRequest, AuthToken,
-                      path='users', http_method='POST',
+                      path='users.auth', http_method='POST',
                       name='auth')
     def auth(self, *args, **kw):
         log.error(args)
@@ -67,4 +68,14 @@ class UserApi(remote.Service):
         token = AuthToken()
         token.auth_token = 'aaa'
         token.user = 'kenji'
+        return token
+
+    @endpoints.method(AuthRequest, AuthToken,
+                      path='users.logout', http_method='POST',
+                      name='logout')
+    def logout(selfself, *args, **kw):
+        token = AuthToken()
+        token.auth_token = ''
+        token.user = ''
+        token.logout_status = True
         return token

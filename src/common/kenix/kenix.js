@@ -21,6 +21,18 @@ angular.module('kenix', [])
                 }, 1000);
                 return deferred.promise;
             },
+            asyncLogout: function () {
+                var deferred = $q.defer();
+                setTimeout(function () {
+                    deferred.notify('About to logout');
+                    gapi.client.users.logout().execute(function (response) {
+                        deferred.resolve(response);
+                    }, function (response) {
+                        deferred.reject(response);
+                    });
+                }, 1000);
+                return deferred.promise;
+            },
             login: function (email, password) {
                 return gapi.client.users.auth(email, password)
                     .execute(function (response) {
@@ -30,7 +42,7 @@ angular.module('kenix', [])
             logout: function () {
                 return gapi.client.users.logout()
                     .execute(function (response) {
-                        return response.data.logout_status;
+                        return response.result.logout_status;
                     });
             },
             auth: function () {
