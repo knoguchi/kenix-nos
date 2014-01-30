@@ -4,26 +4,11 @@ from endpoints_proto_datastore.ndb import EndpointsAliasProperty
 from endpoints_proto_datastore.ndb import EndpointsModel
 
 
-class Contact(EndpointsModel):
-    contact_person = ndb.StringProperty()
-    email = ndb.StringProperty()
-    phone = ndb.StringProperty()
-    addr1 = ndb.StringProperty()
-    addr2 = ndb.StringProperty()
-    addr3 = ndb.StringProperty()
-    addr4 = ndb.StringProperty()
-    city = ndb.StringProperty()
-    state = ndb.StringProperty()
-    zip1 = ndb.StringProperty()
-    zip2 = ndb.StringProperty()
-    country = ndb.StringProperty()
-
-
 class PoModel(EndpointsModel):
     po_num = ndb.StringProperty()
     order_date = ndb.DateProperty()
     status = ndb.StringProperty()
-    bill_to = ndb.StructuredProperty(Contact)
+    bill_to = ndb.StructuredProperty()
 
     def line_of_items(self):
         """

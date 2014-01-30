@@ -3,12 +3,6 @@ Kenix NOS
 
 Order management system.
 
-Supported Client
-----------------
-* Web client
-* iOS
-* Android
-* RF scanners
 
 Services
 ========
@@ -153,11 +147,18 @@ Cron
 daily reports
 
 
+Supported Client
+================
+* Web client
+* iOS
+* Android
+* RF scanners
+
 Technology Stack
 ================
 
-Client
-------
+JavaScript Client
+-----------------
 * AngularJS
 * Bootstrap
 * Sass
@@ -165,6 +166,14 @@ Client
 * bower
 * npm
 * grunt
+
+iOS Client
+----------
+Google Cloud Endpoint client
+
+Android Client
+--------------
+Google Cloud Endpoint client
 
 Server
 ------

@@ -3,6 +3,7 @@ import logging
 import endpoints
 from protorpc import messages
 from protorpc import remote
+from google.appengine.api import users
 
 from models import UserModel
 
