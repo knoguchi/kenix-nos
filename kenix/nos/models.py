@@ -8,7 +8,7 @@ class PoModel(EndpointsModel):
     po_num = ndb.StringProperty()
     order_date = ndb.DateProperty()
     status = ndb.StringProperty()
-    bill_to = ndb.StructuredProperty()
+    bill_to = ndb.KeyProperty(kind='AddressModel')
 
     def line_of_items(self):
         """
@@ -40,7 +40,7 @@ class PoLineModel(EndpointsModel):
     tax = ndb.FloatProperty()
 
     # line level ship-to 
-    ship_to = ndb.StructuredProperty(Contact)
+    ship_to = ndb.KeyProperty(kind='AddressModel')
     ship_window_from = ndb.DateProperty()
     ship_window_to = ndb.DateProperty()
 
