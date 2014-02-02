@@ -1,4 +1,4 @@
-angular.module('nos', [
+angular.module('kenix.scm', [
         'services.breadcrumbs',
         'services.i18nNotifications',
         'services.httpRequestTracker',
@@ -6,10 +6,11 @@ angular.module('nos', [
         'templates-app',  // generated js from atpl by html2js
         'templates-common',  // generated js from acpl by html2js
         //'common.errorHandling',
-        //'nos.home',
-        //'nos.about',
-        //'nos.club',
-        //'nos.team',
+        //'kenix.scm.home',
+        //'kenix.scm.about',
+        //'kenix.scm.accounts',
+        //'kenix.scm.users',
+        //'kenix.scm.pos',
         'ui.router'
     ])
     .constant('I18N.MESSAGES', {

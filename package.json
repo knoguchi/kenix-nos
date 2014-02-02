@@ -1,16 +1,16 @@
 {
     "author": "Kenji Noguchi",
-    "name": "kenix-nos",
+    "name": "kenix.scm",
     "version": "0.0.1",
-    "homepage": "http://github.com/knoguchi/kenix-nos",
+    "homepage": "http://github.com/knoguchi/kenix-scm",
     "licenses": {
         "type": "MIT",
-        "url": "https://raw.github.com/knoguchi/kenix-nos/master/LICENSE"
+        "url": "https://raw.github.com/knoguchi/kenix-scm/master/LICENSE"
     },
-    "bugs": "https://github.com/knoguchi/kenix-nos/issues",
+    "bugs": "https://github.com/knoguchi/kenix-scm/issues",
     "repository": {
         "type": "git",
-        "url": "git@github.com:knoguchi/kenix-nos.git"
+        "url": "git@github.com:knoguchi/kenix-scm.git"
     },
     "dependencies": {},
     "devDependencies": {

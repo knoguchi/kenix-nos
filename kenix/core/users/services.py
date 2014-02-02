@@ -6,7 +6,7 @@ from protorpc import remote
 from google.appengine.api import users
 
 from models import UserModel
-
+from kenix.core.api import kenix_core_api
 
 log = logging.getLogger(__name__)
 
@@ -24,18 +24,53 @@ class AuthToken(messages.Message):
     user = messages.StringField(2)
     logout_status = messages.BooleanField(3)
 
-@endpoints.api(name='users', version='v1')
-class UserApi(remote.Service):
+
+@kenix_core_api.api_class(resource_name='users')
+class UserService(remote.Service):
     """
     Users API v1
     """
 
-    @UserModel.query_method(path='users', name='index')
+    @UserModel.query_method(query_fields=('limit', 'pageToken', 'email'),
+                            path='users', name='index')
     def index(self, query):
         """
         List of users
         """
         return query
+
+    @UserModel.method(path='users/{id}', http_method='GET', name='get')
+    def get(self, user):
+        """
+        Get a user
+        @param user:
+        @return:
+        """
+        if not user.from_datastore:
+            raise endpoints.NotFoundException('User not found')
+        return user
+
+    @UserModel.method(path='users', name='create')
+    def create(self, user):
+        """
+        Create a user
+        """
+        # do some validation
+        user.put()
+        return user
+
+    @UserModel.method(path='users/{id}', http_method='PUT', name='update')
+    def update(self, user):
+        """
+        Update a user
+        @param user:
+        @return user:
+        """
+
+        if not user.from_datastore:
+            raise endpoints.NotFoundException('User not found')
+        user.put()
+        return user
 
     # @UserModel.method(path='users', http_method='POST',
     #                   name='_auth')
@@ -61,22 +96,44 @@ class UserApi(remote.Service):
     # auth_level=None
 
     @endpoints.method(AuthRequest, AuthToken,
-                      path='users.auth', http_method='POST',
+                      path='users/auth', http_method='POST',
                       name='auth')
     def auth(self, *args, **kw):
+        """
+        Authenticate a user by email and password
+        @param args:
+        @param kw:
+        @return:
+        """
+        user = users.get_current_user()
+        token = AuthToken()
+
+        if user:
+            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.write('Hello, ' + user.nickname())
+        #else:
+        #    self.redirect(users.create_login_url(self.request.uri))
+
         log.error(args)
         log.error(kw)
-        token = AuthToken()
         token.auth_token = 'aaa'
         token.user = 'kenji'
         return token
 
     @endpoints.method(AuthRequest, AuthToken,
-                      path='users.logout', http_method='POST',
+                      path='users/logout', http_method='POST',
                       name='logout')
-    def logout(selfself, *args, **kw):
+    def logout(self, *args, **kw):
+        """
+        Logout a user
+        @param self:
+        @param args:
+        @param kw:
+        @return:
+        """
         token = AuthToken()
         token.auth_token = ''
         token.user = ''
         token.logout_status = True
         return token
+

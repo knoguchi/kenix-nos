@@ -28,3 +28,17 @@ class LocationModel(EndpointsModel):
     """
     warehouse = ndb.KeyProperty(kind=WarehouseModel)
     code = ndb.StringProperty()
+
+
+class RcvOrderModel(EndpointsModel):
+    """
+    Receiving Order Model
+    """
+    eta = ndb.DateTimeProperty(verbose_name="Estimated Arrival")
+
+
+class ReceiptModel(EndpointsModel):
+    """
+    Receipt class
+    """
+    receipt_date = ndb.DateTimeProperty()

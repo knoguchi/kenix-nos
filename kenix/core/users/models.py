@@ -7,6 +7,8 @@ class UserModel(EndpointsModel):
     User model class.
     A user must belong to one or more accounts
     """
+    nickname = ndb.StringProperty()
+    full_name = ndb.StringProperty()
     email = ndb.StringProperty()
     password = ndb.StringProperty()
     accounts = ndb.KeyProperty(kind='AccountModel', repeated=True)

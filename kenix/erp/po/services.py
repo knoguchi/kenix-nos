@@ -2,22 +2,22 @@ import endpoints
 from protorpc import remote
 
 from models import PoModel, PoLineModel
+from kenix.erp.api import kenix_erp_api
 
-
-@endpoints.api(name='po', version='v1')
-class PurchaseOrderApi(remote.Service):
+@kenix_erp_api.api_class(resource_name='po')
+class PurchaseOrderService(remote.Service):
     """
     Purchase Order API v1
     """
 
-    @PoModel.query_method(path='pos', name='index')
+    @PoModel.query_method(path='po', name='index')
     def index(self, query):
         """
         List of purchase orders
         """
         return query
 
-    @PoModel.method(request_fields=('id',), path='pos/{id}', http_method='GET', name='get')
+    @PoModel.method(request_fields=('id',), path='po/{id}', http_method='GET', name='get')
     def get(self, po_model):
         """
         Get a purchase order
@@ -26,7 +26,7 @@ class PurchaseOrderApi(remote.Service):
             raise endpoints.NotFoundException('PO not found.')
         return po_model
 
-    @PoModel.method(path='pos', http_method='POST', name='create')
+    @PoModel.method(path='po', http_method='POST', name='create')
     def create(self, po_model):
         """
         Place a new purchase order
@@ -34,7 +34,7 @@ class PurchaseOrderApi(remote.Service):
         po_model.put()
         return po_model
 
-    @PoLineModel.method(path='po_line_models/{parent}', http_method='POST', name='po_line_models.create')
+    @PoLineModel.method(path='po/{parent}', http_method='POST', name='line.create')
     def create_line(self, po_line_model):
         """
         Create a line of item for a purchase order
@@ -47,7 +47,7 @@ class PurchaseOrderApi(remote.Service):
         return po_line_model
 
 
-    @PoLineModel.query_method(query_fields=('parent',), path='po_line_models/{parent}', name='po_line_model.index')
+    @PoLineModel.query_method(query_fields=('parent',), path='po/{parent}', name='line.index')
     def index_line(self, query):
         """
         Line of items of a purchase order

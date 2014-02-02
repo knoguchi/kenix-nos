@@ -9,7 +9,7 @@ angular.module('kenix', [])
                 var deferred = $q.defer();
                 setTimeout(function () {
                     deferred.notify('About to authenticate ' + email + '.');
-                    gapi.client.users.auth({email: email, password: password})
+                    gapi.client.kenix_core.users.auth({email: email, password: password})
                         .execute(
                         function (response) {
                             deferred.resolve(response);
@@ -25,7 +25,7 @@ angular.module('kenix', [])
                 var deferred = $q.defer();
                 setTimeout(function () {
                     deferred.notify('About to logout');
-                    gapi.client.users.logout().execute(function (response) {
+                    gapi.client.kenix_core.users.logout().execute(function (response) {
                         deferred.resolve(response);
                     }, function (response) {
                         deferred.reject(response);
@@ -34,19 +34,19 @@ angular.module('kenix', [])
                 return deferred.promise;
             },
             login: function (email, password) {
-                return gapi.client.users.auth(email, password)
+                return gapi.client.kenix_core.users.auth(email, password)
                     .execute(function (response) {
                         return response.data.user;
                     });
             },
             logout: function () {
-                return gapi.client.users.logout()
+                return gapi.client.kenix_core.users.logout()
                     .execute(function (response) {
                         return response.result.logout_status;
                     });
             },
             auth: function () {
-                return gapi.client.users.auth()
+                return gapi.client.kenix_core.users.auth()
                     .execute(function (response) {
                         if (response && response.code == 200) {
                             return response.result.user;
@@ -58,8 +58,7 @@ angular.module('kenix', [])
         return service;
 
     }
-    ])
-;
+    ]);
 
 
 //this.login = function () {

@@ -2,7 +2,7 @@ from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb import EndpointsModel
 
 
-class OnHandSkuModel(EndpointsModel):
+class SkuModel(EndpointsModel):
     """
     id = SKU
     Same product can have multiple SKUs.
@@ -16,21 +16,11 @@ class OnHandSkuModel(EndpointsModel):
     receipt_dt = ndb.DateTimeProperty()
 
 
-class OnHandInventoryModel(EndpointsModel):
+class InvModel(EndpointsModel):
     """
     Keep qty of item identified by SKU,
     id: sku:location
     """
-    sku = ndb.KeyProperty(kind='OnHandSkuModel')
+    sku = ndb.KeyProperty(kind='SkuModel')
     location_id = ndb.KeyProperty()
     qty = ndb.IntegerProperty()
-
-
-class BookInvModel(EndpointsModel):
-    """
-    Book Inventory
-
-    id: product
-    """
-    product = ndb.KeyProperty()
-    warehouse = ndb.KeyProperty()

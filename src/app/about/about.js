@@ -1,4 +1,4 @@
-angular.module('nos.about', [
+angular.module('kenix.scm.about', [
         'ui.router',
         //'placeholders',
         'ui.bootstrap'

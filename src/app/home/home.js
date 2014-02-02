@@ -1,4 +1,4 @@
-angular.module('nos.home', [
+angular.module('kenix.scm.home', [
         'ui.router',
         'plusOne'
     ])
