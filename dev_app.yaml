@@ -58,3 +58,4 @@ skip_files:
 - ^data/.*
 - ^(.*/)?node_modules/.*
 - ^(.*/)?_darcs*
+- ^(.*/)?.*\.md

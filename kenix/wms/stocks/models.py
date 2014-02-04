@@ -2,11 +2,12 @@ from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb import EndpointsModel
 
 
-class OnHandSkuModel(EndpointsModel):
+class StockModel(EndpointsModel):
     """
-    id = SKU
-    Same product can have multiple SKUs.
-    Invisible to users
+    Stock model class
+    id: SKU + Location
+    sku: Customer SKU (product, lot, serial, etc)
+        + (receiving date, receiving batch, container, po, so, ...)
     """
     description = ndb.StringProperty()
     condition = ndb.StringProperty()
@@ -14,6 +15,13 @@ class OnHandSkuModel(EndpointsModel):
     decimal_point = ndb.IntegerProperty()
     product = ndb.KeyProperty(kind='ProductModel')
     receipt_dt = ndb.DateTimeProperty()
+
+
+class SkuModel(EndpointsModel):
+    """
+    Payout SKU
+    """
+
 
 
 class OnHandInvModel(EndpointsModel):

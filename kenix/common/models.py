@@ -1,6 +1,7 @@
 from decimal import Decimal
 from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb import EndpointsModel
+from kenix.common.money import Money
 
 
 class DecimalProperty(ndb.TextProperty):
@@ -22,6 +23,30 @@ class DecimalProperty(ndb.TextProperty):
             return None
 
 
+class MoneyProperty(ndb.TextProperty):
+    def _validate(self, value):
+        if not isinstance(value, (Money, str)):
+            raise ndb.datastore_errors.BadValueError('Expected Money or string, got %r' % value)
+
+        return Money(value)
+
+    def _to_base_type(self, value):
+        if not isinstance(value, (str, Money)):
+            raise TypeError('MoneyProperty %s can only be set to string values; received %r' % (self._name, value))
+        return str(value)
+
+    def _from_base_type(self, value):
+        try:
+            return Money(value)
+        except ValueError:
+            return None
+
+
+class BaseSerialNumberModel(EndpointsModel):
+    """
+    Serial number generator.
+
+    """
 class AddressModel(EndpointsModel):
     phone = ndb.StringProperty()
     addr1 = ndb.StringProperty()
