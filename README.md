@@ -338,3 +338,13 @@ delight
  customer portal
  returns - activate return tool, alert if not returned in 2weeks
  shipping label - customize return label
+
+sitemap
+-------
+top page
+ - login
+ - sign up
+ - jquery/no angular
+
+app page
+ - full angular

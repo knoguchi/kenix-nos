@@ -7,6 +7,7 @@ static
 .DS_Store
 *.pyc
 *~
-workspace.xml
+.idea/workspace.xml
+**/.idea/workspace.xml
 tasks.xml
 watcherTasks.xml

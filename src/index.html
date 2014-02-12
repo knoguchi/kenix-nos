@@ -1,116 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title ng-bind="pageTitle"></title>
-    <meta name="viewport" content="initial-scale=1,minimum-scale=1,width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <!-- Stylesheets -->
-    <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900' rel='stylesheet'
-          type='text/css'>
-    -->
-    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>"/>
-    <% }); %>
+    <title>Kenix NOS</title>
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script>
-    <% }); %>
-    <!-- endbuild -->
-
-    <script type="text/javascript">
-        console.log("setup");
-        function startApp() {
-            var apisToLoad = 3; // must match number of calls to gapi.client.load()
-            var gCallback = function () {
-                if (--apisToLoad == 0) {
-                    //Manual bootstraping of the application
-                    var $injector = angular.bootstrap(document, ['kenix.scm']);
-                    console.log('Angular bootstrap complete ');
-                }
-                ;
-            };
-            gapi.client.load('kenix_core', 'v1.0', gCallback, '//' + window.location.host + '/_ah/api');
-            gapi.client.load('kenix_erp', 'v1.0', gCallback, '//' + window.location.host + '/_ah/api');
-            gapi.client.load('kenix_wms', 'v1.0', gCallback, '//' + window.location.host + '/_ah/api');
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: deepskyblue;
+            color: #ffffff;
         }
-    </script>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if IE]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+        .jumbotron {
+            color: #ffffff;
+            background: url("../assets/images/bg.jpg") center no-repeat;
+        }
+
+        .jumbotron h1, h2, p, a {
+            padding: 20px;
+
+        }
+
+        #features div {
+            background-color: blue;
+            height: 28em;
+            margin: 100px auto;
+            border: 3px solid darkblue;
+            /*shadow*/
+            -webkit-box-shadow: 10px 10px 10px #000;
+            -moz-box-shadow: 10px 10px 10px #000;
+            box-shadow: 10px 10px 10px #000;
+
+            /*rounded corners*/
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+        .footer-links {
+            color: #999999;
+            margin-top: 20px;
+            padding-left: 0px;
+        }
+        .footer-links li:first-child {
+            padding-left: 0px;
+        }
+        .footer-links li {
+            display: inline;
+        }
+        .footer-links ul ol {
+            margin-bottom: 10px;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-<body ng-controller="AppCtrl">
-<div ng-include="'public_header.tpl.html'"></div>
-<!-- <div ng-include="'header.tpl.html'"></div> -->
-<div ng-include="'notifications.tpl.html'" class="container-fluid"
-     ng-show="notifications.getCurrent().length"></div>
-<article>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <ul class="row">
-            <li class="col-sm-3 col-4 text-center">
-                <i class="foundicon-checkmark"></i>
-
-                <div class="box">
-                    <h3>Easy</h3>
-
-                    <p>No integration, no installation. You can start your logistics right away. </p>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Kenix NOS</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right" role="form" action="/login" method="post">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" class="form-control">
                 </div>
-            </li>
-            <li class="col-sm-3 col-4 text-center">
-                <i class="foundicon-edit"></i>
-
-                <div class="box">
-                    <h3>Flexible</h3>
-
-                    <p>Workflow is customizable for your needs. Our logistics consultants can
-                        help you design the optimal workflow.</p>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" class="form-control">
                 </div>
-            </li>
-            <li class="col-sm-3 col-4 text-center">
-                <i class="foundicon-tools"></i>
-
-                <div class="box">
-                    <h3>Realtime</h3>
-
-                    <p>Orders status and inventories are displayed in the console. Stream the status to your mobile
-                        devices in realtime.</p>
-                </div>
-            </li>
-            <li class="col-sm-3 col-4 text-center">
-                <i class="foundicon-add-doc"></i>
-
-                <div class="box">
-                    <h3>Secure</h3>
-
-                    <p>The industry standard SSL guarantees security.</p>
-                </div>
-            </li>
-        </ul>
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+        </div>
+        <!--/.navbar-collapse -->
     </div>
-</article>
+</div>
 
-<footer>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
     <div class="container">
-        <ul class="row">
-            <li>
-                <a href="/about">About Us</a>
-            </li>
-            <li>
-                <a href="/terms">Terms of Use</a>
-            </li>
-            <li>
-                <a href="/privacy">Privacy</a>
-            </li>
-            <li>
-                <a href="/contacts">Contact Us</a>
-            </li>
-        </ul>
+        <h1>Simple logistics for everyone</h1>
+
+        <h2>Start your SCM 2.0 with us today</h2>
+
+        <p><a class="btn btn-primary btn-lg" role="button">Sign Up &raquo;</a></p>
     </div>
-    <p>Copyright &copy; 2014 Kenix</p>
-</footer>
-<script src="https://apis.google.com/js/client.js?onload=startApp"></script>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div id="features" class="row">
+        <div class="col-sm-3 col-4 text-center">
+            <h2>Workflow</h2>
+
+            <p>Workflow is customizable for your needs. Our logistics consultants can
+                help you design the optimal workflow.</p>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-sm-3 col-4 text-center">
+            <h2>Marketplace</h2>
+
+            <p>Integrated with major market places and shopping carts. You can start your logistics right away. </p>
+        </div>
+        <div class="col-sm-3 col-4 text-center">
+            <h2>Extensible</h2>
+
+            <p>Start with a mobile device. It can expand to full SCM with multiple devices, printers and locations.</p>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-sm-3 col-4 text-center">
+            <h2>Secure</h2>
+
+            <p>The industry standard SSL guarantees security.</p>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer id="footer">
+
+        <div class="container">
+            <ul class="footer-links muted">
+                <li>
+                    <a href="/about">About Us</a>
+                </li>
+                <li>
+                    <a href="/terms">Terms of Use</a>
+                </li>
+                <li>
+                    <a href="/privacy">Privacy</a>
+                </li>
+                <li>
+                    <a href="/contacts">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+        <p>&copy; Kenix 2014</p>
+    </footer>
+</div>
+<!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>
